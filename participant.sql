@@ -1,3 +1,5 @@
+drop table if exists participant;
+
 create table participant (
     phonenumber char(8) primary key,
     firstname varchar(20) not null,
