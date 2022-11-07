@@ -14,6 +14,6 @@
         <p>Lastname: ${lastname}</p>
         <p>Phonenumber: ${phonenumber}</p>
         <p>Gender: ${gender}</p>
-        <a href="participantList">Go to list of participants</a>
+        <a href="participants">Go to list of participants</a>
     </body>
 </html>
