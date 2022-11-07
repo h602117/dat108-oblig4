@@ -1,4 +1,4 @@
-package no.hvl.lph.dat108;
+package partyregistration;
 
 import javax.servlet.http.HttpServletRequest;
 

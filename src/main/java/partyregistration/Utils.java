@@ -1,4 +1,4 @@
-package no.hvl.lph.dat108;
+package partyregistration;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
