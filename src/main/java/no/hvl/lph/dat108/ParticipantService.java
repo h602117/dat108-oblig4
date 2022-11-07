@@ -11,8 +11,13 @@ public class ParticipantService {
     @Autowired
     private ParticipantRepo participantRepo;
 
-    public void createParticipant(String firstname, String lastname, String phonenumber, String password, String gender) {
-        participantRepo.save(new Participant(firstname, lastname, phonenumber, password, gender));
+    public void createParticipant(String phonenumber, String firstname, String lastname, String password, String gender) {
+        String[] hashAndSalt = Utils.hashPassword(password, null);
+        participantRepo.save(new Participant(phonenumber, firstname, lastname, hashAndSalt[0], hashAndSalt[1], gender));
+    }
+
+    public Participant getParticipant(String phonenumber) {
+        return participantRepo.findByPhonenumber(phonenumber);
     }
 
     public List<Participant> getAllParticipants() {

@@ -10,7 +10,8 @@ public class Participant {
     private String phonenumber;
     private String firstname;
     private String lastname;
-    private String password;
+    private String passHash;
+    private String passSalt;
     private String gender;
 
     public Participant() {
@@ -22,11 +23,12 @@ public class Participant {
         this.phonenumber = phonenumber;
     }
 
-    public Participant(String phonenumber, String firstname, String lastname, String password, String gender) {
+    public Participant(String phonenumber, String firstname, String lastname, String passHash, String passSalt, String gender) {
         this.phonenumber = phonenumber;
         this.firstname = firstname;
         this.lastname = lastname;
-        this.password = password;
+        this.passHash = passHash;
+        this.passSalt = passSalt;
         this.gender = gender;
     }
 
@@ -54,12 +56,20 @@ public class Participant {
         this.lastname = lastname;
     }
 
-    public String getPassword() {
-        return this.password;
+    public String getPassHash() {
+        return this.passHash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassHash(String passHash) {
+        this.passHash = passHash;
+    }
+
+    public String getPassSalt() {
+        return this.passSalt;
+    }
+
+    public void setPassSalt(String passSalt) {
+        this.passSalt = passSalt;
     }
 
     public String getGender() {

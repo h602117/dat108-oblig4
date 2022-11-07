@@ -8,7 +8,7 @@
   <title>Login</title>
 </head>
 <body>
-  <form>
+  <form method="post" action="login">
     <label for="phonenumber">
       Phonenumber:
       <input name="phonenumber" />
@@ -17,6 +17,8 @@
       Password:
       <input name="password" type="password" />
     </label>
+    <input type="submit" value="submit" />
+    <a href="register">No registered yet?</a>
   </form>
 </body>
 </html>

@@ -1,5 +1,8 @@
 package no.hvl.lph.dat108;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -15,8 +18,22 @@ public class WebController {
     private ParticipantService service;
 
     @GetMapping("/login")
-    public String login() {
+    public String getLogin() {
         return "login";
+    }
+
+    @PostMapping("/login")
+    public String postLogin(@RequestParam String phonenumber, @RequestParam String password, HttpServletRequest request) {
+        Participant p = this.service.getParticipant(phonenumber);
+        if (p != null) {
+            if (Utils.validatePassword(password, p.getPassHash(), p.getPassSalt())) {
+                HttpSession s = request.getSession();
+                s.setAttribute("loggedin", true);
+                return "redirect:participants";
+            }
+        }
+
+        return "redirect:login";
     }
 
     @GetMapping("/register")
@@ -28,7 +45,7 @@ public class WebController {
     public String postRegister(@RequestParam String firstname, @RequestParam String lastname,
             @RequestParam String phonenumber, @RequestParam String password, @RequestParam String repeatpassword,
             @RequestParam String gender, RedirectAttributes ra) {
-        service.createParticipant(firstname, lastname, phonenumber, password, gender);
+        service.createParticipant(phonenumber, firstname, lastname, password, gender);
         ra.addFlashAttribute("firstname", firstname);
         ra.addFlashAttribute("lastname", lastname);
         ra.addFlashAttribute("phonenumber", phonenumber);
