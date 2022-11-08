@@ -32,6 +32,12 @@ public class WebController {
         return "redirect:participants";
     }
 
+    @PostMapping("/logout")
+    public String postLogout(HttpServletRequest request) {
+        Utils.logout(request.getSession());
+        return "redirect:login";
+    }
+
     @GetMapping("/register")
     public String getRegister() {
         return "registration";

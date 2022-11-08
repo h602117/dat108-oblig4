@@ -29,5 +29,8 @@
       </c:forEach>
     </tbody>
   </table>
+  <form method="post" action="logout">
+    <button type="submit">logout</button>
+  </form>
 </body>
 </html>
