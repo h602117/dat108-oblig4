@@ -60,19 +60,16 @@ public class Utils {
         HttpSession session = request.getSession();
 
         if (participant == null) {
-            System.out.printf("Login failed, could not find user\n");
             return false;
         }
 
         if (!validatePassword(password, participant.getPassHash(), participant.getPassSalt())) {
-            System.out.printf("Login for user '%s', failed with wrong password\n", participant.getPhonenumber());
             return false;
         }
 
         session.setMaxInactiveInterval(60);
         session.setAttribute("phonenumber", participant.getPhonenumber());
         session.setAttribute("isLoggedIn", true);
-        System.out.printf("Login success\n");
 
         return true;
     }
