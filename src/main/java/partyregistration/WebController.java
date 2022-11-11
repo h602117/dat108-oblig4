@@ -17,6 +17,11 @@ public class WebController {
     @Autowired
     private ParticipantService service;
 
+    @GetMapping("/")
+    public String getIndex() {
+        return "redirect:login";
+    }
+
     @GetMapping("/login")
     public String getLogin() {
         return "login";
