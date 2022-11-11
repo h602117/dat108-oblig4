@@ -2,25 +2,37 @@ package partyregistration;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+
 
 @Entity
 public class Participant {
 
     @Id
+    @NotNull
+    @Pattern(regexp = "\\d{8}", message = "must be 8 digits")
     private String phonenumber;
+
+    @NotNull
+    @Pattern(regexp = "([A-ZÆØÅ][a-zæøå-]+\s?)+", message = "names starting with upper case then lowercase and dash, separated by space")
     private String firstname;
+
+    @NotNull
+    @Pattern(regexp = "[A-ZÆØÅ][a-zæøå-]+", message = "one name starting with upper case then lowercase and dash, no spaces")
     private String lastname;
+
+    @NotNull
     private String passHash;
+
+    @NotNull
     private String passSalt;
+
+    @NotNull
+    @Pattern(regexp = "[MF]", message = "either M (male) or F (female)")
     private String gender;
 
     public Participant() {
-    }
-
-    public Participant(String firstname, String lastname, String phonenumber) {
-        this.firstname = firstname;
-        this.lastname = lastname;
-        this.phonenumber = phonenumber;
     }
 
     public Participant(String phonenumber, String firstname, String lastname, String passHash, String passSalt, String gender) {
