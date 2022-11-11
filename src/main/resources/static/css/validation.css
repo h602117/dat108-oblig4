@@ -1,13 +1,9 @@
 input[type="text"]:valid,
-input[type="password"].strong-password {
+input[type="password"]:valid {
     border-color: green;
 }
 
-input[type="password"].medium-password {
-    border-color: yellow;
-}
-
 input[type="text"]:invalid,
-input[type="password"].invalid-password {
-    border-color: red;
+input[type="password"]:invalid {
+    border-color: red;;
 }
