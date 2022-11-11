@@ -23,10 +23,10 @@ public class WebController {
     }
 
     @PostMapping("/login")
-    public String postLogin(@RequestParam String phonenumber, @RequestParam String password, HttpServletRequest request) {
+    public String postLogin(@RequestParam String phonenumber, @RequestParam String password, HttpServletRequest request, RedirectAttributes ra) {
         Participant p = this.service.getParticipant(phonenumber);
         if (!Utils.login(request, p, password)) {
-            // TODO: Set error message for login screen
+            ra.addFlashAttribute("error_message", "Could not login");
             return "redirect:login";
         }
 
@@ -59,6 +59,7 @@ public class WebController {
 
         Participant p = service.getParticipant(phonenumber);
         if (!Utils.login(request, p, password)) {
+            ra.addFlashAttribute("error_message", "Could not login to your new registration");
             return "redirect:login";
         }
 
@@ -72,8 +73,9 @@ public class WebController {
     }
 
     @GetMapping("/confirmation")
-    public String getConfirmation(HttpServletRequest request) {
+    public String getConfirmation(HttpServletRequest request, RedirectAttributes ra) {
         if (!Utils.isLoggedIn(request.getSession())) {
+            ra.addFlashAttribute("error_message", "Login to view page");
             return "redirect:login";
         }
 
@@ -81,8 +83,9 @@ public class WebController {
     }
 
     @GetMapping("/participants")
-    public String getParticipants(HttpServletRequest request, ModelMap model, HttpSession session) {
+    public String getParticipants(HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes ra) {
         if (!Utils.isLoggedIn(request.getSession())) {
+            ra.addFlashAttribute("error_message", "Login to view page");
             return "redirect:login";
         }
 
