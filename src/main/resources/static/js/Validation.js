@@ -5,6 +5,12 @@ passwordInput.addEventListener("input", (e) => {
     if (repeatPasswordInput.value) {
         validateRepeatPasswordMatch();
     }
+
+    if (passwordIsWeak()) {
+        passwordInput.classList = ["weak"];
+    } else {
+        passwordInput.classList = [];
+    }
 });
 
 repeatPasswordInput.addEventListener("input", (e) => {
@@ -20,3 +26,5 @@ const validateRepeatPasswordMatch = () => {
 
     repeatPasswordInput.reportValidity();
 }
+
+const passwordIsWeak = () => passwordInput.value.length < 12;

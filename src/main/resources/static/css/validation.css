@@ -3,6 +3,10 @@ input[type="password"]:valid {
     border: 2px solid green;
 }
 
+input[type="password"]:valid.weak {
+    border: 2px solid yellow;
+}
+
 input[type="text"]:invalid,
 input[type="password"]:invalid {
     border: 2px solid red;
