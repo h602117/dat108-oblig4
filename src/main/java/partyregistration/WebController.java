@@ -41,7 +41,7 @@ public class WebController {
 
     @GetMapping("/register")
     public String getRegister() {
-        return "registration";
+        return "register";
     }
 
     @PostMapping("/register")
@@ -88,7 +88,7 @@ public class WebController {
 
         model.addAttribute("participants", service.getAllParticipants());
         model.addAttribute("current", service.getParticipant((String) session.getAttribute("phonenumber")));
-        return "participantList";
+        return "participants";
     }
 
 }
