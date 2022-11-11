@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c" %>
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,6 +13,9 @@
   </head>
   <body>
     <h1>Register for the party</h1>
+    <c:if test="${error_message != null}">
+      <p style="color: red">${error_message}</p>
+    </c:if>
     <form id="form-register" method="post" action="register">
       <fieldset>
         <label class="category-label" for="firstname">First Name:</label>

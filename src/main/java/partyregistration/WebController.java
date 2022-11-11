@@ -28,7 +28,7 @@ public class WebController {
 
     @PostMapping("/login")
     public String postLogin(@RequestParam String phonenumber, @RequestParam String password, HttpServletRequest request, RedirectAttributes ra) {
-        Participant p = this.service.getParticipant(phonenumber);
+        Participant p = this.service.getParticipant(phonenumber.trim());
         if (!Utils.login(request, p, password)) {
             ra.addFlashAttribute("error_message", "Could not login");
             return "redirect:login";
@@ -59,7 +59,18 @@ public class WebController {
         HttpServletRequest request,
         RedirectAttributes ra
     ) {
-        service.createParticipant(phonenumber, firstname, lastname, password, gender);
+        boolean success = service.createParticipant(
+            phonenumber.trim(),
+            firstname.trim(),
+            lastname.trim(),
+            password.trim(),
+            gender.trim()
+        );
+
+        if (!success) {
+            ra.addFlashAttribute("error_message", "Could not register participation, phonenumber already in use");
+            return "redirect:register";
+        }
 
         Participant p = service.getParticipant(phonenumber);
         if (!Utils.login(request, p, password)) {
@@ -67,7 +78,6 @@ public class WebController {
             return "redirect:login";
         }
 
-        ra.addFlashAttribute("showConfirmation", true);
         ra.addFlashAttribute("firstname", firstname);
         ra.addFlashAttribute("lastname", lastname);
         ra.addFlashAttribute("phonenumber", phonenumber);
