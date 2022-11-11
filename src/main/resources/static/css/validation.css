@@ -1,9 +1,9 @@
 input[type="text"]:valid,
 input[type="password"]:valid {
-    border-color: green;
+    border: 2px solid green;
 }
 
 input[type="text"]:invalid,
 input[type="password"]:invalid {
-    border-color: red;;
+    border: 2px solid red;
 }

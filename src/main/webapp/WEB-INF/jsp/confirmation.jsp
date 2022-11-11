@@ -9,12 +9,13 @@
     <title>Participation Confirmed</title>
   </head>
   <body>
-    <h1>Confirmation</h1>
-    <p>Participation confirmed</p>
-    <p>Firstname: ${firstname}</p>
-    <p>Lastname: ${lastname}</p>
-    <p>Phonenumber: ${phonenumber}</p>
-    <p>Gender: ${gender}</p>
-    <a href="participants">Go to list of participants</a>
+    <h1>Participation Confirmed</h1>
+    <div>
+      <p>Firstname: ${firstname}</p>
+      <p>Lastname: ${lastname}</p>
+      <p>Phonenumber: ${phonenumber}</p>
+      <p>Gender: ${gender}</p>
+      <a href="participants">Go to list of participants</a>
+    </div>
   </body>
 </html>

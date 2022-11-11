@@ -11,6 +11,16 @@ body {
     font-size: 1.6rem;
 }
 
+table {
+    border-collapse: collapse;
+    margin-bottom: 8px;
+}
+
+td, th {
+    padding: 4px;
+    border: 2px solid black;
+}
+
 #form-register,
 #form-login {
     border: 1px solid black;
@@ -32,6 +42,7 @@ input[type="text"],
 input[type="password"] {
     margin-left: 4px;
     padding: 4px;
+    border-radius: 4px;
 }
 
 input[type="submit"] {
