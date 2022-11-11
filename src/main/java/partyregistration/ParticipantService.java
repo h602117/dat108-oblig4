@@ -27,7 +27,7 @@ public class ParticipantService {
     }
 
     public List<Participant> getAllParticipants() {
-        return participantRepo.findAll();
+        return participantRepo.findAllByOrderByFirstnameAscLastnameAsc();
     }
 
 }
