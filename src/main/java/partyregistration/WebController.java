@@ -1,7 +1,6 @@
 package partyregistration;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -88,14 +87,14 @@ public class WebController {
     }
 
     @GetMapping("/participants")
-    public String getParticipants(HttpServletRequest request, ModelMap model, HttpSession session, RedirectAttributes ra) {
+    public String getParticipants(HttpServletRequest request, ModelMap model, RedirectAttributes ra) {
         if (!Utils.isLoggedIn(request.getSession())) {
             ra.addFlashAttribute("error_message", "Login to view page");
             return "redirect:login";
         }
 
         model.addAttribute("participants", service.getAllParticipants());
-        model.addAttribute("current", service.getParticipant((String) session.getAttribute("phonenumber")));
+        model.addAttribute("current", service.getParticipant((String) request.getSession().getAttribute("phonenumber")));
         return "participants";
     }
 
